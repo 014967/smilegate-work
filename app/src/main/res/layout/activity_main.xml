@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".ui.LaunchActiity.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+
+        app:layout_constraintEnd_toEndOf="@+id/constraint_layout"
+        app:layout_constraintHeight_percent="0.6"
+        app:layout_constraintStart_toStartOf="@+id/constraint_layout"
+        app:layout_constraintTop_toTopOf="@+id/constraint_layout"
+
+        >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="300dp"
+            android:text="WELCOM TO \nMONUMENTAL HABITS"
+            android:textAlignment="center"
+            android:textColor="#573353"
+            android:textSize="30dp"
+
+
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/linear_shape"
+        android:orientation="vertical"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login With Email"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#573353"
+            android:textAlignment="center">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textField"
+                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
+                app:boxStrokeColor="#FFFFFF"
+
+                app:startIconDrawable="@drawable/ic_baseline_email_24"
+                app:endIconMode="clear_text"
+                android:background="#FFF6ED"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxBackgroundMode="none"
+                android:hint="아이디"
+                app:hintTextColor="#FDA758"
+                android:layout_marginBottom="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_id"
+                    android:inputType="text"
+                    android:textColor="#FDA758"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passwordField"
+                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
+                app:boxStrokeColor="#FFFFFF"
+
+                app:startIconDrawable="@drawable/ic_baseline_lock_24"
+                app:endIconMode="clear_text"
+                app:boxBackgroundMode="none"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:background="#FFF6ED"
+                android:hint="비밀번호"
+                android:layout_marginBottom="5dp"
+                app:hintTextColor="#FDA758">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_password"
+                    android:inputType="text"
+                    android:textColor="#FDA758"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <Button
+                android:id="@+id/bt_login"
+                android:layout_gravity="center"
+                android:text="로그인"
+                android:backgroundTint="#E18804"
+                android:textColor="#573353"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+            </Button>
+            <TextView
+                android:id="@+id/tv_signUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:textColor="@color/custom_primary"
+                android:gravity="center"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/tv_forgetPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forget Password"
+                android:textColor="@color/custom_primary"
+                android:gravity="center"
+                android:textSize="20dp"/>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
