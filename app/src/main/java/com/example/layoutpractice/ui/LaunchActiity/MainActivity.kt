@@ -19,10 +19,10 @@ import com.example.layoutpractice.ui.ManagerActivity.ManagerActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var binding : ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     lateinit var mainActivityViewModel: MainActivityViewModel
 
-    val TAG:String = "로그"
+    val TAG: String = "로그"
 
     //뷰가 생성이 되었을 때
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-        binding.etId.onTextChanged{
+        binding.etId.onTextChanged {
             mainActivityViewModel.updateValue(actionType = ActionType.EMAIL, it.toString())
         }
         binding.etPassword.onTextChanged {
@@ -42,20 +42,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         mainActivityViewModel.status.observe(this, Observer {
-            if (it == 1)
-            {
+            if (it == 1) {
                 //매니저
-                Log.d(TAG,"MainActivity - manager() called")
-                val intent = Intent(this,ManagerActivity::class.java)
+                Log.d(TAG, "MainActivity - manager() called")
+                val intent = Intent(this, ManagerActivity::class.java)
                 startActivity(intent)
 
-            }else if(it == 2){
+            } else if (it == 2) {
                 val intent = Intent(this, NavigationActivity::class.java)
                 startActivity(intent)
-            }
-            else if(it != 0 ){
-               // Log.d(TAG,"MainActivity - onCreate() called : $it")
-                Toast.makeText(this,"잘못된 접근입니다" ,Toast.LENGTH_SHORT).show()
+            } else if (it != 0) {
+                // Log.d(TAG,"MainActivity - onCreate() called : $it")
+                Toast.makeText(this, "잘못된 접근입니다", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -65,9 +63,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    fun onLoginButtonClicked(){
-        Log.d(TAG,"MainActivity - onLoginButtonClicked() called")
-
+    fun onLoginButtonClicked() {
+        Log.d(TAG, "MainActivity - onLoginButtonClicked() called")
 
 
         val intent = Intent(this, NavigationActivity::class.java)
@@ -76,14 +73,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        when(view)
-        {
-            binding.btLogin ->
-            {
+        when (view) {
+            binding.btLogin -> {
                 mainActivityViewModel.loginClick()
             }
-            binding.tvSignUp ->
-            {
+            binding.tvSignUp -> {
                 val intent = Intent(this, SignUpActivity::class.java)
                 startActivity(intent)
             }

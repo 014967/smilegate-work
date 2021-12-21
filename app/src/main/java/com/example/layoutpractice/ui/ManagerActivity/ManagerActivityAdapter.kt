@@ -15,19 +15,19 @@ import com.example.layoutpractice.model.User
 
 class ManagerActivityAdapter(
     context: Context?,
-    userArrayList: ArrayList<User>?,
+    userArrayList: ArrayList<User>,
     callback: AdapterCallback
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
 
 
     interface AdapterCallback {
-        fun onItemClicked(user: ArrayList<User>)
+        fun onItemClicked(position: Int, user: User)
     }
 
 
     var context: Context? = context
-    private var users: ArrayList<User>? = userArrayList
+    private var users: ArrayList<User> = userArrayList
 
     //var checkedUser : HashMap<String, String>? = HashMap()
     private var checkedUser: ArrayList<User>? = userArrayList
@@ -49,7 +49,7 @@ class ManagerActivityAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         //TODO("Not yet implemented")
 
-        val user = users?.get(position)
+        val user = users.get(position)
         if (user != null) {
             val viewHolder = holder as RecyclerViewViewHolder
             var tokenString: String? = ""
@@ -64,7 +64,7 @@ class ManagerActivityAdapter(
             viewHolder.tv_name.text = user?.name
             viewHolder.tv_roles.text = tokenString
 
-            viewHolder.cb_role.setOnCheckedChangeListener(CheckboxListener(user!!))
+            viewHolder.cb_role.setOnCheckedChangeListener(CheckboxListener(position, users.get(position)))
         }
 
 
@@ -97,15 +97,14 @@ class ManagerActivityAdapter(
 
     }
 
-    inner class CheckboxListener(var user: User) : CompoundButton.OnCheckedChangeListener {
+    inner class CheckboxListener(var position: Int,var user: User) : CompoundButton.OnCheckedChangeListener {
 
         override fun onCheckedChanged(view: CompoundButton?, isChecked: Boolean) {
             when (view?.id) {
                 R.id.cb_role -> {
-                    if (isChecked) {
-                        checkedUser?.add(user)
-                        checkedUser?.let { adapterCallback?.onItemClicked(it) }
-                    }
+
+                        adapterCallback?.onItemClicked(position,user)
+
 
 
                 }

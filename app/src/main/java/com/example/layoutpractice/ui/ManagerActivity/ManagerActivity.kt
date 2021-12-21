@@ -35,10 +35,10 @@ class ManagerActivity : AppCompatActivity(), ManagerActivityAdapter.AdapterCallb
     private var managerToken: String? = null
     private var recyclerView: RecyclerView? = null
     private var adapter: ManagerActivityAdapter? = null
-    private var user: ArrayList<User>? = ArrayList()
+    private var user: ArrayList<User> = ArrayList()
 
     var compositeDisposable = CompositeDisposable()
-    var userList = ArrayList<User>()
+    var userList = HashMap<Int, User>()
 
     val TAG: String = "로그"
 
@@ -80,10 +80,6 @@ class ManagerActivity : AppCompatActivity(), ManagerActivityAdapter.AdapterCallb
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    //managerActivityViewModel.getUserListResponse(it.body())
-                    //Log.d(TAG,"it - $it")
-                    //  managerActivityViewModel.getUserListResponse(it.body().toString())
-                    //  BufferedSource source = responseBody.source();
 
                     var source: BufferedSource = it.source()
                     source.request(Long.MAX_VALUE) // Buffer the entire body.
@@ -103,31 +99,25 @@ class ManagerActivity : AppCompatActivity(), ManagerActivityAdapter.AdapterCallb
 
     }
 
-//    fun deleteUserList(accessToken: String)
-//    {
-//        val retroInstance = RetroInstance.getRetroInstance().create(RetroService::class.java)
-//
-////        var requestBody: RequestBody = MultipartBody.Builder().setType(MultipartBody.FORM)
-////            .addFormDataPart("email", _email.value.toString())
-////            .addFormDataPart("password", _password.value.toString()).build()
-//
-//        var requestBody : ArrayList<ResponseBody>? = null;
-//        requestBody
-//        compositeDisposable.add(retroInstance.deleteUserList(API.str + accessToken, ))
-//    }
 
-    override fun onItemClicked(user: ArrayList<User>) {
+    override fun onItemClicked(position : Int, user: User) {
         Log.d(TAG,"map - $user")
-        this.user = user
+        if(userList.containsKey(position))
+        {
+            userList.remove(position)
+        }
+        else {
+            userList.put(position, user)
+        }
+
     }
 
     override fun onClick(view: View?) {
         when (view) {
 
             binding.btnDeleteUser -> {
-
                 var accessToken : String = SharedPrefManager.getToken()!!.access_token
-                user?.let { managerActivityViewModel.deleteUser(accessToken, user!!) }
+                user?.let { managerActivityViewModel.deleteUser(accessToken, userList!!) }
             }
             binding.btnAddRole -> {}
             binding.btnDummy3 -> {
@@ -135,4 +125,5 @@ class ManagerActivity : AppCompatActivity(), ManagerActivityAdapter.AdapterCallb
             }
         }
     }
+
 }

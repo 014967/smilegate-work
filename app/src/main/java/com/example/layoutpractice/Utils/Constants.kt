@@ -10,6 +10,8 @@ object API {
     const val LOGIN : String = "/login"
     const val LOGOUT : String ="logout"
     const val JOIN : String="api/user/save"
+    const val DELETE : String = "api/user/delete"
+
 
     const val ROLE_MANAGER : Int = 1
     const val ROLE_USER : Int = 2

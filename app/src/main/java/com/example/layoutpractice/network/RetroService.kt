@@ -3,6 +3,7 @@ package com.example.layoutpractice.network
 import com.example.layoutpractice.Utils.API
 import com.example.layoutpractice.model.Status
 import com.example.layoutpractice.model.Token
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 
 import java.util.*
@@ -35,6 +36,7 @@ interface RetroService {
     @GET("api/users")
     fun getUserList(@Header("Authorization") authHeader : String) : Observable<ResponseBody>
 
-    @POST("api/delete")
-    fun deleteUserList(@Header("Authorization") authHeader: String, @Part body: List<MultipartBody.Part>) : Observable<ResponseBody>
+
+    @HTTP(method="DELETE", hasBody = true, path = API.DELETE)
+    fun deleteUserList(@Header("Authorization") authHeader: String, @Body body : JsonObject) : Observable<ResponseBody>
 }
